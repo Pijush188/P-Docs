@@ -208,7 +208,7 @@ export const Navbar = ({ data }: NavbarProps) => {
                                 <MenubarContent>
                                     <MenubarSub>
                                         <MenubarSubTrigger>Table</MenubarSubTrigger>
-                                        <MenubarSubContent>
+                                        <MenubarSubContent className="overflow-scroll">
                                             <MenubarItem onClick={() => inserTable({ rows: 1, cols: 1})}>
                                                 1 x 1 
                                             </MenubarItem>
@@ -221,17 +221,40 @@ export const Navbar = ({ data }: NavbarProps) => {
                                             <MenubarItem onClick={() => inserTable({ rows: 4, cols: 4})}>
                                                 4 x 4 
                                             </MenubarItem>
-                                            <div style={{ padding: "5px" }}>
-                                                <label style={{ display: "block", marginBottom: "5px"}}>
+                                            <div 
+                                                
+                                                style={{
+                                                    padding: "10px",
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    alignItems: "stretch",
+                                                    gap: "10px",
+                                                    }}>
+                                                <label>
                                                     Custom Table Dimensions:
                                                 </label>
+                                                <div
+                                                    style={{
+                                                        display: "flex",
+                                                        flexDirection: "row",
+                                                        flexWrap: "wrap",
+                                                        gap: "10px",
+                                                        justifyContent: "center",
+                                                        alignItems: "center",
+                                                    }}
+                                                >
                                                 <input
                                                     type="number"
                                                     min="1"
                                                     placeholder="Rows"
                                                     value={rows}
                                                     onChange={(e) => setRows(Number(e.target.value))}
-                                                    style={{ marginRight: "5px", width: "60px" }}
+                                                    style={{
+                                                        width: "80px",
+                                                        padding: "5px",
+                                                        border: "1px solid #ccc",
+                                                        borderRadius: "4px",
+                                                    }}
                                                 />
                                                 <input
                                                     type="number"
@@ -239,7 +262,12 @@ export const Navbar = ({ data }: NavbarProps) => {
                                                     placeholder="Columns"
                                                     value={cols}
                                                     onChange={(e) => setCols(Number(e.target.value))}
-                                                    style={{ marginRight: "5px", width: "60px" }}
+                                                    style={{
+                                                        width: "80px",
+                                                        padding: "5px",
+                                                        border: "1px solid #ccc",
+                                                        borderRadius: "4px",
+                                                    }}
                                                 />
                                                 <button
                                                     onClick={() => inserTable({ rows, cols })}
@@ -248,11 +276,13 @@ export const Navbar = ({ data }: NavbarProps) => {
                                                         color: "white",
                                                         border: "none",
                                                         padding: "3px 5px",
+                                                        borderRadius: "4px",
                                                         cursor: "pointer",
                                                     }}
                                                 >
                                                     Insert
                                                 </button>
+                                            </div>
                                             </div>
                                         </MenubarSubContent>
                                     </MenubarSub>

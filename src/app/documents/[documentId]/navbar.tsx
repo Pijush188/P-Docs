@@ -44,6 +44,7 @@ import { useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useState } from "react";
 
 interface NavbarProps {
     data: Doc<"documents">
@@ -65,6 +66,9 @@ export const Navbar = ({ data }: NavbarProps) => {
             router.push(`/documents/${id}`)
         })
     }
+
+    const [rows, setRows] = useState<number>(1);
+    const [cols, setCols] = useState<number>(1);
 
     const inserTable = ({rows, cols} : { rows:number, cols:number }) => {
         editor
@@ -217,6 +221,39 @@ export const Navbar = ({ data }: NavbarProps) => {
                                             <MenubarItem onClick={() => inserTable({ rows: 4, cols: 4})}>
                                                 4 x 4 
                                             </MenubarItem>
+                                            <div style={{ padding: "5px" }}>
+                                                <label style={{ display: "block", marginBottom: "5px"}}>
+                                                    Custom Table Dimensions:
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    min="1"
+                                                    placeholder="Rows"
+                                                    value={rows}
+                                                    onChange={(e) => setRows(Number(e.target.value))}
+                                                    style={{ marginRight: "5px", width: "60px" }}
+                                                />
+                                                <input
+                                                    type="number"
+                                                    min="1"
+                                                    placeholder="Columns"
+                                                    value={cols}
+                                                    onChange={(e) => setCols(Number(e.target.value))}
+                                                    style={{ marginRight: "5px", width: "60px" }}
+                                                />
+                                                <button
+                                                    onClick={() => inserTable({ rows, cols })}
+                                                    style={{
+                                                        backgroundColor: "#0078D4",
+                                                        color: "white",
+                                                        border: "none",
+                                                        padding: "3px 5px",
+                                                        cursor: "pointer",
+                                                    }}
+                                                >
+                                                    Insert
+                                                </button>
+                                            </div>
                                         </MenubarSubContent>
                                     </MenubarSub>
                                 </MenubarContent>
